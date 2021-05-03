@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Hero } from './hero';
@@ -9,7 +9,11 @@ import { MessagesService } from './messages.service';
 })
 export class HeroService {
   constructor(private messagesService: MessagesService, private http: HttpClient) { }
-  private heroesUrl = 'api/heroes2';
+  private heroesUrl = 'api/heroes';
+  
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
 
   // Typescrips voor: Task<Hero> GetHero(int id) { ... }
   getHero(id: number): Observable<Hero> {
@@ -27,5 +31,10 @@ export class HeroService {
 
     this.messagesService.addMessage('HeroService: Fetched heroes');
     return heroes;
+  }
+
+  updateHero(hero?: Hero): Observable<any> {
+    // Put -> Update existing data
+     return this.http.put(this.heroesUrl, hero, this.httpOptions);
   }
 }
