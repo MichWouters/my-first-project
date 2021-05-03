@@ -1,7 +1,7 @@
 <h2>My Heroes</h2>
 
 <ul class="heroes">
-    <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="OnSelect(hero)">
+    <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero">
         <a routerLink="/detail/{{ hero.id }}">
             <span class="badge">{{ hero.id | mijnpipe}} </span> {{ hero.name | titlecase}}
         </a>
@@ -10,5 +10,5 @@
 
 <div>
     <!-- Event Binding -->
-    <button (click)="HandleClicked()">Click me</button>
+    <!-- <button (click)="HandleClicked()">Click me</button> -->
 </div>
