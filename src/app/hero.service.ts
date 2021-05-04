@@ -32,16 +32,19 @@ export class HeroService {
   };
 
   addHero(hero: Hero) : Observable<Hero>{
+    this.messagesService.addMessage(`HeroService: Add hero: ${hero.name}`);
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions);
   };
 
   updateHero(hero?: Hero): Observable<any> {
     // Put -> Update existing data
+    this.messagesService.addMessage(`HeroService: Update hero: ${hero?.name}`);
      return this.http.put(this.heroesUrl, hero, this.httpOptions);
   };
 
   deleteHero(hero: Hero): Observable<Hero>{
     const url = `${this.heroesUrl}/${hero.id}`;
+    this.messagesService.addMessage(`HeroService: Delete hero: ${hero.name}`);
     return this.http.delete<Hero>(url, this.httpOptions);
   };
 }

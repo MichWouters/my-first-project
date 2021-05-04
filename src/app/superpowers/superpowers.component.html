@@ -1,0 +1,44 @@
+<h2>My Super Powers: </h2>
+
+<div>
+  <table>
+    <tr>
+      <td>
+        <label for="new-superpower">Superpower name: </label>
+      </td>
+      <td>
+        <input for="new-superpower" type="text" [(ngModel)]="selectedSuperpower.Name" placeholder="Superpower name" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="new-superpower">Superpower type: </label>
+      </td>
+      <td>
+        <input for="new-superpower" [(ngModel)]="selectedSuperpower.Type" placeholder="Superpower type" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="new-superpower">Overpowered superpower: </label>
+      </td>
+      <td>
+        <input for="new-superpower" type="checkbox" [(ngModel)]="selectedSuperpower.IsOverpowered"
+          placeholder="true or false" />
+      </td>
+    </tr>
+  </table>
+
+  <button class="add-button"
+    (click)="addSuperpower(selectedSuperpower); selectedSuperpower.Name=''; selectedSuperpower.Type=''; selectedSuperpower.IsOverpowered=false">
+    Add Superpower
+  </button>
+
+  <ul class="superpowers">
+    <li *ngFor="let superpower of superpowers">
+      <a routerLink="/spDetail/{{superpower.id}}">
+        <span class="badge">{{superpower.id}}</span>{{superpower.Name}}
+      </a>
+      <button class="delete" title="delete superpower" (click)="deleteSuperpower(superpower)">x</button>
+    </li>
+  </ul>
