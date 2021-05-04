@@ -13,7 +13,7 @@ export class HeroesComponent implements OnInit {
   selectedHero?: Hero;
 
   constructor(
-    private heroService: HeroService, 
+    private heroService: HeroService,
     private messageService: MessagesService) {
   }
 
@@ -26,6 +26,14 @@ export class HeroesComponent implements OnInit {
       .subscribe(x => this.heroes = x);
   }
 
+  add(name: string){
+    name = name.trim();
+    if(!name){ return; }
+
+    this.heroService.addHero({name} as Hero)
+          .subscribe(x => this.heroes.push(x));
+  }
+
   // OnSelect(hero: Hero) {
   //   this.selectedHero = hero;
   //   this.messageService.addMessage(`HeroService: Clicked on:${hero.id} ${hero.name}`);
@@ -33,7 +41,7 @@ export class HeroesComponent implements OnInit {
 
   // Get data async from database server
   // Subscribe -> Wait until method has been completed, then perform action
- 
+
   // isImageVisible = true;
   // clicked = 0;
 

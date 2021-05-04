@@ -27,10 +27,12 @@ export class HeroService {
 
   getHeroes(): Observable<Hero[]> {
     // Make HTTP API call -> Get array of Heroes from specified URL
-    const heroes = this.http.get<Hero[]>(this.heroesUrl);
-
     this.messagesService.addMessage('HeroService: Fetched heroes');
-    return heroes;
+    return this.http.get<Hero[]>(this.heroesUrl);
+  }
+
+  addHero(hero: Hero) : Observable<Hero>{
+    return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions);
   }
 
   updateHero(hero?: Hero): Observable<any> {
