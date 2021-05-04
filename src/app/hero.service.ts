@@ -23,20 +23,25 @@ export class HeroService {
 
     this.messagesService.addMessage(`HeroService: Fetched hero id: ${id}`);
     return hero;
-  }
+  };
 
   getHeroes(): Observable<Hero[]> {
     // Make HTTP API call -> Get array of Heroes from specified URL
     this.messagesService.addMessage('HeroService: Fetched heroes');
     return this.http.get<Hero[]>(this.heroesUrl);
-  }
+  };
 
   addHero(hero: Hero) : Observable<Hero>{
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions);
-  }
+  };
 
   updateHero(hero?: Hero): Observable<any> {
     // Put -> Update existing data
      return this.http.put(this.heroesUrl, hero, this.httpOptions);
-  }
+  };
+
+  deleteHero(hero: Hero): Observable<Hero>{
+    const url = `${this.heroesUrl}/${hero.id}`;
+    return this.http.delete<Hero>(url, this.httpOptions);
+  };
 }

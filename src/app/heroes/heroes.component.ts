@@ -34,6 +34,13 @@ export class HeroesComponent implements OnInit {
           .subscribe(x => this.heroes.push(x));
   }
 
+  deleteHero(hero: Hero){
+    if (!hero) { return; }
+
+    this.heroService.deleteHero(hero)
+        .subscribe(() => this.heroes = this.heroes.filter(x => x != hero));
+  }
+
   // OnSelect(hero: Hero) {
   //   this.selectedHero = hero;
   //   this.messageService.addMessage(`HeroService: Clicked on:${hero.id} ${hero.name}`);
