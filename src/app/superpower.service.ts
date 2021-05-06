@@ -8,7 +8,8 @@ import { SuperPower } from './superPower';
   providedIn: 'root'
 })
 export class SuperpowerService {
-  private superpowersUrl = 'api/superpowers';
+  private superpowersUrl = 'https://localhost:44343/api/power';
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -29,12 +30,12 @@ export class SuperpowerService {
   };
 
   updateSuperpower(superpower?: SuperPower): Observable<any> {
-    this.messageService.addMessage(`SuperpowerService: Updated superpower: ${superpower?.Name}`);
+    this.messageService.addMessage(`SuperpowerService: Updated superpower: ${superpower?.name}`);
     return this.http.put(this.superpowersUrl, superpower, this.httpOptions);
   };
 
   addSuperpower(superpower: SuperPower): Observable<SuperPower> {
-    this.messageService.addMessage(`SuperPowerService: Added superpower: ${superpower.Name}`);
+    this.messageService.addMessage(`SuperPowerService: Added superpower: ${superpower.name}`);
     return this.http.post<SuperPower>(this.superpowersUrl, superpower, this.httpOptions);
   };
 

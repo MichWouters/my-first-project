@@ -9,7 +9,7 @@ import { MessagesService } from './messages.service';
 })
 export class HeroService {
   constructor(private messagesService: MessagesService, private http: HttpClient) { }
-  private heroesUrl = 'api/heroes';
+  private heroesUrl = 'https://localhost:44343/api/hero';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

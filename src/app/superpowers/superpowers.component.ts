@@ -9,8 +9,8 @@ import { SuperpowerService } from '../superpower.service';
 })
 export class SuperpowersComponent implements OnInit {
   @Input() selectedSuperpower:SuperPower = {
-    Name:"",
-    Type:"",
+    name:"",
+    type:"",
   };
   superpowers : SuperPower[] = [];
   constructor(private superPowerService:SuperpowerService) { }
@@ -20,7 +20,7 @@ export class SuperpowersComponent implements OnInit {
   };
 
   addSuperpower(superpower:SuperPower):void{
-    if(!superpower.Name){return;}
+    if(!superpower.name){return;}
     this.superPowerService.addSuperpower(superpower).subscribe(x => this.superpowers.push(x));
   };
 
